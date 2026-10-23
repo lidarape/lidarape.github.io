@@ -49,6 +49,20 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
   function b64ud(t) { t = t.replace(/-/g, '+').replace(/_/g, '/'); while (t.length % 4) t += '='; var s = atob(t), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
   function show(kind, label) { out.replaceChildren(); out.appendChild(el('span', 'seal ' + kind, label)); return out; }
   function fullLink(code, txt) { var a = el('a', 'btn sec', txt); a.href = FULL + '#' + code; a.target = '_blank'; a.rel = 'noopener'; return a; }
+  var REGP = null;
+  function loadReg() { if (!REGP) REGP = fetch('registro.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); return REGP; }
+  function hex(b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
+  function b64d(t) { var s = atob(t), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
+  async function fromReg(code) {
+    var reg = await loadReg(); if (!Array.isArray(reg)) return null;
+    var id = hex(await crypto.subtle.digest('SHA-256', enc.encode('id:' + code))).slice(0, 24);
+    var rec = reg.find(function (r) { return r.id === id; }); if (!rec) return null;
+    try {
+      var raw = await crypto.subtle.digest('SHA-256', enc.encode('clave:' + code));
+      var key = await crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']);
+      return JSON.parse(dec.decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(rec.iv) }, key, b64d(rec.ct))));
+    } catch (e) { return false; }
+  }
   async function check(code, p64, s64) {
     try {
       var k = await crypto.subtle.importKey('jwk', PUB, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
@@ -56,8 +70,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
       return ok ? JSON.parse(dec.decode(b64ud(p64))) : false;
     } catch (e) { return false; }
   }
-  function record(d, code) {
-    var o = show('ok', 'Certificado válido');
+  function record(d, code, note) {
+    var st = d.e || 'Vigente', vig = st === 'Vigente', ej = /ejemplo/i.test(st);
+    var o = show(vig ? 'ok' : (ej ? 'warn' : 'bad'), vig ? 'Certificado válido' : (ej ? 'Certificado de ejemplo' : 'Certificado anulado'));
     o.appendChild(el('p', 'name', d.n));
     var c = CURSOS[code.split('-')[0]] || null, dl = el('dl'), rows = [];
     var curso = d.k || (c ? c[0] + ' «' + c[1] + '»' : null);
@@ -66,10 +81,10 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
     rows.push(['Tipo', 'Certificado de ' + String(d.t || '').toLowerCase()]);
     rows.push(['Asistencia', d.a + (tot ? ' de ' + tot : '')]);
     if (d.h) rows.push(['Horas pedagógicas', String(d.h)]);
-    rows.push(['Fecha de emisión', d.f], ['Código', code], ['Organiza', 'LIDARA']);
+    rows.push(['Fecha de emisión', d.f], ['Código', code], ['Estado', st], ['Organiza', 'LIDARA']);
     rows.forEach(function (r) { dl.appendChild(el('dt', null, r[0])); dl.appendChild(el('dd', r[0] === 'Código' ? 'code' : null, r[1])); });
     o.appendChild(dl);
-    o.appendChild(el('p', 'msg', 'Verificado con la firma digital de LIDARA: los datos coinciden con los emitidos y no han sido alterados.'));
+    o.appendChild(el('p', 'msg', !vig ? (ej ? 'Este registro es una muestra del diseño y no acredita participación.' : 'Este certificado fue anulado por LIDARA y no tiene validez.') : (note || 'Verificado con la firma digital de LIDARA: los datos coinciden con los emitidos y no han sido alterados.')));
   }
   async function verify(raw) {
     raw = String(raw || '').trim().replace(/^#/, '');
@@ -77,6 +92,8 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
     if (!m) { var o = show('bad', 'Código no válido'); o.appendChild(el('p', 'msg', 'El código debe tener la forma PREFIJO-AÑO-NÚMERO-XXXX, por ejemplo DRG-2026-001-ABCD.')); return; }
     var code = m[1].toUpperCase();
     input.value = code;
+    var rg = await fromReg(code);
+    if (rg) return record(rg, code, 'Verificado en el registro oficial de certificados de LIDARA.');
     if (m[2]) {
       var d = await check(code, m[2], m[3]);
       if (d) return record(d, code);
@@ -84,9 +101,8 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
       b.appendChild(el('p', 'msg', 'La firma digital no coincide: los datos del certificado fueron alterados o el enlace está incompleto.'));
       return;
     }
-    var w = show('warn', 'Consulta en el registro');
-    w.appendChild(el('p', 'msg', 'Para comprobar un código escrito a mano, consúltelo en el registro completo de certificados de LIDARA:'));
-    var p = el('p'); p.appendChild(fullLink(code, 'Consultar el código ' + code)); w.appendChild(p);
+    var w = show('bad', 'Código no encontrado');
+    w.appendChild(el('p', 'msg', 'No hay un certificado registrado con el código ' + code + '. Revise que esté completo y bien escrito. Si su certificado es reciente, escanee el código QR impreso en él o comuníquese con LIDARA al WhatsApp 917 580 401.'));
   }
   document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); var h = (location.hash || '').replace(/^#/, ''); var v = input.value.trim().toUpperCase(); verify(h && h.split('.')[0].toUpperCase() === v ? h : v); });
   if (location.hash.length > 1) verify(location.hash);
