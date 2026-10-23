@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIDARA · Verificación de certificados</title>
+<style>
+:root{--navy:#1E3A78;--dk:#15295A;--red:#E0232E;--ok:#1E7A4C;--bad:#B3261E;--ink:#1D2B4A;--muted:#5A6478;--line:#DCE3F0}
+*{box-sizing:border-box}
+body{margin:0;background:#F4F6FA;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:22px 16px}
+header .in,main{max-width:640px;margin:0 auto}
+.brand{font-weight:900;font-size:26px;letter-spacing:1px}.brand span{color:#FF5A63}
+header p{margin:4px 0 0;color:#C9D6F0;font-size:15px}
+main{padding:20px 16px 40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.seal{display:inline-block;font-weight:800;font-size:14px;letter-spacing:.5px;padding:6px 12px;border-radius:999px;color:#fff;text-transform:uppercase}
+.seal.ok{background:var(--ok)}.seal.bad{background:var(--bad)}.seal.warn{background:#9A6700}
+.name{font-size:22px;font-weight:800;margin:14px 0 10px;color:var(--navy)}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0}
+dt{color:var(--muted);font-size:14px}dd{margin:0;font-weight:700;font-size:15px}
+dd.code{font-family:Consolas,monospace;letter-spacing:.5px}
+.msg{color:var(--muted);font-size:14px;margin:14px 0 0}
+form{display:flex;gap:8px;flex-wrap:wrap}
+input{flex:1;min-width:200px;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;text-transform:uppercase}
+button,.btn{font:inherit;font-weight:700;background:var(--red);color:#fff;border:0;border-radius:10px;padding:11px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.sec{background:var(--navy)}
+label{display:block;font-weight:700;margin-bottom:8px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header><div class="in"><div class="brand">LIDA<span>RA</span></div><p>Verificación de certificados</p></div></header>
+<main>
+  <div class="card" id="out"><p class="msg" style="margin:0">Escanee el código QR del certificado o escriba su código.</p></div>
+  <div class="card">
+    <form id="f"><label for="c" style="width:100%">Código del certificado</label><input id="c" placeholder="Ej.: DRG-2026-001-ABCD" autocomplete="off"><button type="submit">Verificar</button></form>
+  </div>
+</main>
+<footer>LIDARA · Asesoría y capacitación farmacéutica · WhatsApp 917 580 401</footer>
+<script>
+(function () {
+  var PUB = {"kty":"EC","crv":"P-256","x":"-Fw3XOfpZeuFxk1IRqQcWTDzin78nMJv4IyacCzOcUg","y":"bpogVBULelO7TZ87BLbxuOWTGNzklPTdNCah3FSKGPI"};
+  var CURSOS = {"DRG": ["Taller teórico–práctico", "Creación de droguería", 9, "sesiones"], "ASD": ["Seminario", "Autorización sanitaria de droguería", 1, "sesiones"], "BPA": ["Seminario", "BPA en droguerías y almacenes", 1, "sesiones"], "BPDT": ["Seminario", "BPDT en droguerías y almacenes", 1, "sesiones"], "CFR": ["Seminario", "Cadena de frío", 1, "sesiones"], "MTC": ["Seminario", "Mapeo térmico y calificación", 1, "sesiones"], "CCP": ["Seminario", "Calificación de contenedores pasivos", 1, "sesiones"], "PCC": ["Seminario", "Pesquisa y control de calidad", 1, "sesiones"], "APO": ["Seminario", "Auditoría a proveedores y operadores logísticos", 1, "sesiones"], "VUCE": ["Seminario", "Importación, VUCE y aduanas", 1, "sesiones"], "DGR": ["Seminario", "Destrucción de productos y gestión de residuos", 1, "sesiones"], "SST": ["Seminario", "SST en almacenes farmacéuticos", 1, "sesiones"], "RMA": ["Seminario", "Retiro del mercado y alertas sanitarias", 1, "sesiones"], "ISO": ["Seminario", "ISO 9001:2015 aplicada a droguerías", 1, "sesiones"], "POE": ["Seminario", "Elaboración y control de POE y Lista Maestra", 1, "sesiones"], "CAPA": ["Seminario", "Desviaciones, CAPA y análisis de causa raíz", 1, "sesiones"], "GRC": ["Seminario", "Gestión de riesgos de calidad", 1, "sesiones"], "ALCOA": ["Seminario", "Sistemas computarizados e integridad de datos (ALCOA+)", 1, "sesiones"], "ACO": ["Seminario", "Aseguramiento de calidad en oficina", 1, "sesiones"], "DEF": ["Seminario", "Dossier de especialidad farmacéutica", 1, "sesiones"], "INT": ["Seminario", "Intercambiabilidad", 1, "sesiones"], "EST": ["Seminario", "Estudios de estabilidad", 1, "sesiones"], "CPR": ["Seminario", "Cambios post-registro y reinscripciones", 1, "sesiones"], "BIO": ["Seminario", "Productos biológicos y biosimilares", 1, "sesiones"], "ROT": ["Seminario", "Rotulado, inserto y ficha técnica", 1, "sesiones"], "DDM": ["Seminario", "Dossier de dispositivos médicos", 1, "sesiones"], "DDN": ["Seminario", "Dossier de dietéticos y naturales", 1, "sesiones"], "NSOC": ["Seminario", "NSO de cosméticos", 1, "sesiones"], "NSOH": ["Seminario", "NSO higiene doméstica/absorbentes y RS artículos para bebé", 1, "sesiones"], "BLC": ["Seminario", "Búsqueda de literatura científica", 1, "sesiones"], "BPFV": ["Seminario", "Buenas Prácticas de Farmacovigilancia", 1, "sesiones"], "RAM": ["Seminario", "Gestión de sospechas de RAM", 1, "sesiones"], "IPS": ["Seminario", "IPS, EPA y gestión de señales", 1, "sesiones"], "AIFV": ["Seminario", "Acta de inspección BPFV", 1, "sesiones"], "FVO": ["Seminario", "Farmacovigilancia en oficina farmacéutica", 1, "sesiones"], "PAG": ["Seminario", "Procedimiento administrativo general", 1, "sesiones"], "RDT": ["Seminario", "Rol y responsabilidad legal del director técnico", 1, "sesiones"], "EYP": ["Seminario", "Estupefacientes y psicotrópicos", 1, "sesiones"], "PFC": ["Seminario", "Productos falsificados, contrabando y comercio ilegal", 1, "sesiones"], "OPS": ["Seminario", "Observatorio de precios y reporte al SNIPPF", 1, "sesiones"], "PUB": ["Seminario", "Publicidad y promoción (redes sociales)", 1, "sesiones"], "LRC": ["Seminario", "Atención al cliente y Libro de Reclamaciones", 1, "sesiones"], "AOF": ["Seminario", "Autorización de oficina farmacéutica", 1, "sesiones"], "BPD": ["Seminario", "Buenas Prácticas de Dispensación", 1, "sesiones"], "SFT": ["Seminario", "Seguimiento farmacoterapéutico", 1, "sesiones"], "AFC": ["Seminario", "Atención farmacéutica en enfermedades crónicas", 1, "sesiones"], "PMO": ["Seminario", "Preparados magistrales y oficinales", 1, "sesiones"], "URA": ["Seminario", "Uso racional de antimicrobianos", 1, "sesiones"], "TOP": ["Taller", "Cómo subir el reporte de precios al Observatorio", 1, "sesiones"], "TRS": ["Taller", "Trámites de registro sanitario en la VUCE", 1, "sesiones"], "TNSO": ["Taller", "Trámite de notificación sanitaria obligatoria (NSO) en la VUCE", 1, "sesiones"]};
+  var FULL = 'https://claude.ai/artifact/QX9umFZGCmVnYavKX4yJXm';
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  var out = document.getElementById('out'), input = document.getElementById('c');
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function b64ud(t) { t = t.replace(/-/g, '+').replace(/_/g, '/'); while (t.length % 4) t += '='; var s = atob(t), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
+  function show(kind, label) { out.replaceChildren(); out.appendChild(el('span', 'seal ' + kind, label)); return out; }
+  function fullLink(code, txt) { var a = el('a', 'btn sec', txt); a.href = FULL + '#' + code; a.target = '_blank'; a.rel = 'noopener'; return a; }
+  async function check(code, p64, s64) {
+    try {
+      var k = await crypto.subtle.importKey('jwk', PUB, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+      var ok = await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, b64ud(s64), enc.encode(code + '.' + p64));
+      return ok ? JSON.parse(dec.decode(b64ud(p64))) : false;
+    } catch (e) { return false; }
+  }
+  function record(d, code) {
+    var o = show('ok', 'Certificado válido');
+    o.appendChild(el('p', 'name', d.n));
+    var c = CURSOS[code.split('-')[0]] || null, dl = el('dl'), rows = [];
+    var curso = d.k || (c ? c[0] + ' «' + c[1] + '»' : null);
+    if (curso) rows.push(['Curso', curso]);
+    var tot = d.s || (c ? c[2] + ' ' + (Number(c[2]) === 1 ? 'sesión' : c[3]) : '');
+    rows.push(['Tipo', 'Certificado de ' + String(d.t || '').toLowerCase()]);
+    rows.push(['Asistencia', d.a + (tot ? ' de ' + tot : '')]);
+    if (d.h) rows.push(['Horas pedagógicas', String(d.h)]);
+    rows.push(['Fecha de emisión', d.f], ['Código', code], ['Organiza', 'LIDARA']);
+    rows.forEach(function (r) { dl.appendChild(el('dt', null, r[0])); dl.appendChild(el('dd', r[0] === 'Código' ? 'code' : null, r[1])); });
+    o.appendChild(dl);
+    o.appendChild(el('p', 'msg', 'Verificado con la firma digital de LIDARA: los datos coinciden con los emitidos y no han sido alterados.'));
+  }
+  async function verify(raw) {
+    raw = String(raw || '').trim().replace(/^#/, '');
+    var m = /^([A-Za-z]{2,5}-\d{4}-\d{3}-[A-Za-z0-9]{4})(?:\.([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+))?$/.exec(raw);
+    if (!m) { var o = show('bad', 'Código no válido'); o.appendChild(el('p', 'msg', 'El código debe tener la forma PREFIJO-AÑO-NÚMERO-XXXX, por ejemplo DRG-2026-001-ABCD.')); return; }
+    var code = m[1].toUpperCase();
+    input.value = code;
+    if (m[2]) {
+      var d = await check(code, m[2], m[3]);
+      if (d) return record(d, code);
+      var b = show('bad', 'Certificado no válido');
+      b.appendChild(el('p', 'msg', 'La firma digital no coincide: los datos del certificado fueron alterados o el enlace está incompleto.'));
+      return;
+    }
+    var w = show('warn', 'Consulta en el registro');
+    w.appendChild(el('p', 'msg', 'Para comprobar un código escrito a mano, consúltelo en el registro completo de certificados de LIDARA:'));
+    var p = el('p'); p.appendChild(fullLink(code, 'Consultar el código ' + code)); w.appendChild(p);
+  }
+  document.getElementById('f').addEventListener('submit', function (e) { e.preventDefault(); var h = (location.hash || '').replace(/^#/, ''); var v = input.value.trim().toUpperCase(); verify(h && h.split('.')[0].toUpperCase() === v ? h : v); });
+  if (location.hash.length > 1) verify(location.hash);
+  window.addEventListener('hashchange', function () { verify(location.hash); });
+})();
+</script>
+</body>
+</html>
