@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aula virtual del taller · LIDARA</title>
+<meta name="description" content="Aula virtual del taller «Crea, implementa y gestiona tu droguería» de LIDARA: ficha técnica, muestra de las 9 sesiones y acceso para participantes inscritos.">
+<meta property="og:title" content="Aula virtual · Taller «Crea, implementa y gestiona tu droguería»">
+<meta property="og:description" content="Mira la ficha técnica y una muestra de las 9 sesiones del taller de LIDARA. Inscripciones por WhatsApp 917 580 401.">
+<meta property="og:image" content="https://lidarape.github.io/taller/muestra/s1-1.jpg">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1E3A78;--dk:#15295A;--red:#E0232E;--red2:#FF5A63;--ink:#1D2B4A;--muted:#55627A;--line:#DCE3F0;--bg:#F4F6FA;--wa:#25A244;--ok:#1E7A4C;--okbg:#E3F3EA;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Archivo',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16.5px}
+a{color:var(--navy)}
+button{font-family:inherit}
+.disp{font-stretch:72%;font-weight:900;line-height:.95}
+header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+header.top .in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px;padding:0 20px}
+header.top img{height:32px;width:auto;display:block}
+header.top a.back{font-weight:700;text-decoration:none;font-size:15px}
+.layout{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 60px)}
+aside{background:#fff;border-right:1px solid var(--line);position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto;display:flex;flex-direction:column}
+.side-head{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+.side-head .k{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase}
+.side-head h2{margin:4px 0 10px;font-size:18px;line-height:1.25;color:var(--navy)}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.prog{font-size:13.5px;color:var(--muted);font-weight:700;margin-top:6px}
+.acc{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg)}
+.acc form{display:flex;gap:8px}
+.acc form input{flex:1;min-width:0;font:inherit;font-size:16px;letter-spacing:2px;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px}
+.acc .rem{display:flex;gap:6px;align-items:center;justify-content:flex-start;font-size:12.5px;color:var(--muted);margin-top:8px;font-weight:600}
+.acc .msg{margin:8px 0 0;font-size:13.5px;font-weight:700}
+.acc .msg.bad{color:var(--red)}
+.acc .open{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px}
+.acc .open b{color:var(--ok)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;text-decoration:none;border:0;border-radius:11px;padding:12px 18px;font-size:16px;cursor:pointer;line-height:1.2}
+.btn-sm{padding:9px 12px;font-size:14px;border-radius:9px}
+.btn-wa{background:var(--wa);color:#fff}.btn-navy{background:var(--navy);color:#fff}.btn-red{background:var(--red);color:#fff}
+.btn-line{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+nav.route{list-style:none;margin:0;padding:8px 0 24px}
+nav.route .grp{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:14px 18px 6px}
+nav.route a{display:flex;align-items:center;gap:12px;padding:10px 18px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;border-left:4px solid transparent;line-height:1.3}
+nav.route a:hover{background:var(--bg)}
+nav.route a.on{background:#EEF2FA;border-left-color:var(--red);color:var(--navy);font-weight:800}
+.dot{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:var(--muted);background:#fff}
+a.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+a.lock .dot{background:var(--bg)}
+nav.route small{display:block;font-weight:600;color:var(--muted);font-size:12.5px}
+main{padding:28px 34px 60px;min-width:0}
+.crumb{font-size:13px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase}
+h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
+.sub{color:var(--muted);margin:0 0 18px;font-weight:600}
+.done-pill{display:inline-flex;align-items:center;gap:6px;background:var(--okbg);color:var(--ok);font-weight:800;font-size:13px;padding:4px 10px;border-radius:99px}
+.lock-pill{display:inline-flex;align-items:center;gap:6px;background:#FDECEC;color:var(--red);font-weight:800;font-size:13px;padding:4px 10px;border-radius:99px}
+/* ficha */
+.ficha-hero{background:linear-gradient(110deg,rgba(21,41,90,.96),rgba(30,58,120,.82)),url('../hero.jpg') center/cover;color:#fff;border-radius:18px;padding:30px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.ficha-hero h2{margin:8px 0 10px;font-size:clamp(28px,3.2vw,44px)}
+.ficha-hero h2 span{color:var(--red2)}
+.ficha-hero p{margin:0;color:#DCE5F7}
+.ficha-hero .k{font-size:12px;font-weight:800;letter-spacing:2.5px;color:var(--red2);text-transform:uppercase}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fact{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px}
+.fact b{display:block;font-size:24px;font-stretch:72%;font-weight:900;line-height:1}
+.fact span{font-size:13px;color:#C9D6F0;font-weight:700}
+.fgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+.fc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;gap:14px}
+.fc .ic{flex:none;width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center}
+.fc:nth-child(even) .ic{background:var(--navy)}
+.fc h3{margin:0 0 4px;font-size:17px;color:var(--navy)}
+.fc p,.fc li{margin:0;color:var(--muted);font-size:15px}
+.fc ol{margin:0;padding-left:20px}
+.fc.wide{grid-column:1/-1}
+.fc.wide ol{columns:2;column-gap:28px}
+/* visor */
+.viewer{background:#0B1430;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.viewer:fullscreen{border-radius:0;justify-content:center}
+.stage{position:relative;aspect-ratio:16/9;max-height:calc(100vh - 260px);min-height:180px;width:100%;display:flex;align-items:center;justify-content:center;touch-action:pan-y;margin:0 auto}
+.viewer:fullscreen .stage{max-height:calc(100vh - 70px)}
+.stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none;display:block}
+.stage .msgv{color:#fff;font-weight:700;text-align:center;padding:20px}
+.navb{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:24px;cursor:pointer;z-index:2}
+.navb.p{left:6px}.navb.n{right:6px}
+.navb:disabled{opacity:.2;cursor:default}
+.vbar{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#C9D6F0;flex-wrap:wrap}
+.vbar .cnt{font-weight:800;color:#fff}
+.ib{background:rgba(255,255,255,.13);color:#fff;border:0;border-radius:9px;padding:8px 12px;font-weight:800;font-size:13.5px;cursor:pointer}
+.endcard{background:#fff;border-radius:14px;padding:26px;text-align:center;max-width:500px;margin:0 16px}
+.endcard h3{margin:0 0 8px;color:var(--navy);font-size:24px}
+.endcard p{margin:0 0 16px;color:var(--muted)}
+.box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:16px}
+.box h3{margin:0 0 8px;color:var(--navy);font-size:18px}
+.box ul{margin:0;padding-left:20px}
+.box li{margin:4px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.cta{background:#fff;border:1px solid var(--line);border-left:5px solid var(--red);border-radius:14px;padding:18px 20px;margin-top:16px}
+.cta p{margin:0 0 12px;color:var(--muted)}
+.mtoggle{display:none}
+@media (max-width:1000px){.layout{grid-template-columns:270px 1fr}main{padding:22px 22px 50px}.ficha-hero{grid-template-columns:1fr}}
+@media (max-width:820px){
+  .layout{display:block}
+  aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+  .mtoggle{display:flex;width:100%;justify-content:space-between;align-items:center;background:#fff;border:0;border-top:1px solid var(--line);padding:12px 18px;font-weight:800;font-size:15px;color:var(--navy);cursor:pointer}
+  nav.route{display:none;padding-top:0}
+  nav.route.show{display:block}
+  .fgrid{grid-template-columns:1fr}.fc.wide ol{columns:1}
+  main{padding:18px 16px 44px}
+  .ficha-hero{padding:22px}
+  .stage{max-height:none}
+  .viewer{padding:8px;border-radius:12px}
+  .navb{width:36px;height:36px;font-size:20px}
+  #vhint{display:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a href="../"><img src="../logo.png" alt="Lidara"></a><a class="back" href="../#taller">← Volver a la web</a></div></header>
+<div class="layout">
+  <aside>
+    <div class="side-head">
+      <div class="k">Aula virtual</div>
+      <h2>Taller «Crea, implementa y gestiona tu droguería»</h2>
+      <div class="bar"><i id="pbar"></i></div>
+      <div class="prog" id="ptxt">Modo muestra</div>
+    </div>
+    <div class="acc" id="acc">
+      <form id="f" autocomplete="off">
+        <input id="clave" type="password" inputmode="numeric" placeholder="Clave del aula" aria-label="Clave del aula">
+        <button class="btn btn-navy btn-sm" type="submit">Entrar</button>
+      </form>
+      <label class="rem"><input type="checkbox" id="rec" checked> Recordar la clave en este dispositivo</label>
+      <p class="msg" id="m" hidden></p>
+    </div>
+    <button class="mtoggle" id="mt" type="button" aria-expanded="false"><span>Contenido del aula</span><span>▾</span></button>
+    <nav class="route" id="route" aria-label="Contenido del aula"></nav>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<script>
+(function(){
+  var SES = [{"n": 1, "t": "Constitución de la empresa", "dia": "domingo 15 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 15/11", "total": 15, "tareas": []}, {"n": 2, "t": "Dirección técnica", "dia": "sábado 21 de noviembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 21/11", "total": 13, "tareas": ["Para la Sesión 3 (mañana domingo): trae tu croquis o un croquis de referencia.", "Para la Sesión 4 (sábado 28): completa la matriz de funciones del DT de tu droguería.", "Para la Sesión 4: lista los documentos «siempre listos» que tendrías hoy."]}, {"n": 3, "t": "Creación de droguerías", "dia": "domingo 22 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 22/11", "total": 13, "tareas": ["Calcula el volumen útil de tu almacén o de un almacén de referencia.", "Lista las cláusulas mínimas para tu contrato de tercerización.", "Crea tu usuario en la Ventanilla Virtual de DIGEMID para la Sesión 4 (sábado 28)."]}, {"n": 4, "t": "Ventanilla Virtual de DIGEMID I: solicitud", "dia": "sábado 28 de noviembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 28/11", "total": 13, "tareas": ["Para la Sesión 5 (mañana domingo): revisa el estado de un expediente real o de prueba.", "Para la Sesión 6 (sábado 5 de diciembre): arma tu expediente con nombres de archivo ordenados.", "Para la Sesión 6: redacta un modelo de escrito de subsanación."]}, {"n": 5, "t": "Ventanilla Virtual de DIGEMID II", "dia": "domingo 29 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 29/11", "total": 13, "tareas": ["Completa tu matriz de trámites frecuentes.", "Redacta una consulta técnica real de tu droguería.", "Haz una lista de los equipos de tu almacén para la Sesión 6 (sábado 5 de diciembre)."]}, {"n": 6, "t": "Puesta en marcha del almacén, del equipo y del sistema documental", "dia": "sábado 5 de diciembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 5/12", "total": 13, "tareas": ["Para la Sesión 7 (mañana domingo): trae una guía de remisión real o de ejemplo.", "Para la Sesión 8 (sábado 12 de diciembre): completa tu Lista Maestra.", "Para la Sesión 8: revisa la vigencia de los certificados de calibración de tus equipos."]}, {"n": 7, "t": "Gestión diaria de recepción, liberación y despacho", "dia": "domingo 6 de diciembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 6/12", "total": 13, "tareas": ["Calcula el plan de muestreo para tres lotes reales de tu droguería.", "Revisa tu formato de recepción con los criterios vistos.", "Trae un reclamo o devolución real (anonimizado) para la Sesión 8 (sábado 12 de diciembre)."]}, {"n": 8, "t": "Gestión diaria de distribución, atención al cliente y retiro del mercado", "dia": "sábado 12 de diciembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 12/12", "total": 13, "tareas": ["Para la Sesión 9 (mañana domingo): trae una observación de inspección real o de ejemplo.", "Después del taller: elabora el flujograma de retiro de tu droguería con responsables.", "Después del taller: haz un simulacro y obtén la lista de clientes de un lote real; envíalo por WhatsApp para recibir retroalimentación."]}, {"n": 9, "t": "Autoinspección, CAPA y descargos", "dia": "domingo 13 de diciembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 13/12", "total": 13, "tareas": ["Programa tu primera autoinspección del año.", "Aplica el formato de plan CAPA a un hallazgo real.", "Envía tu caso integrador para recibir la retroalimentación del facilitador."]}];
+  var NM = 3;
+  var WA = 'https://wa.me/51917580401?text=';
+  var enc = new TextEncoder();
+  var K = null, cache = {}, LINKS = {examen:'', encuesta:''}, view = 'ficha', idx = 0, slides = [], cur = null;
+  var $ = function(id){ return document.getElementById(id); };
+  function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch(e) { return null; } }
+  function b64(t){ var s = atob(t), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
+  function el(tag, cls, txt){ var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  function isDone(k){ return ls('lidara-aula-vista-' + k) === '1'; }
+  function setDone(k){ ls('lidara-aula-vista-' + k, '1'); }
+  var waTaller = WA + encodeURIComponent('Hola LIDARA, TALLER. Quiero inscribirme en el taller «Crea, implementa y gestiona tu droguería».');
+  var IC = {
+    obj:'<path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.5"/><circle cx="12" cy="12" r="5"/><path d="M12 12l8-8M17 4h3v3"/>',
+    who:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.5A5 5 0 0 1 21 19"/>',
+    doc:'<circle cx="12" cy="8" r="3.6"/><path d="M5 21a7 7 0 0 1 14 0"/><path d="M9 14.5l3 3 3-3"/>',
+    hrs:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/>',
+    met:'<path d="M4 5h16v11H4z"/><path d="M8 20h8M12 16v4"/><path d="M8 9.5l2.5 2.5L16 7.5"/>',
+    con:'<path d="M5 3.5h10l4 4v13H5z"/><path d="M8.5 10h7M8.5 13.5h7M8.5 17h4.5"/>',
+    kit:'<path d="M3.5 7.5h17v12h-17z"/><path d="M8.5 7.5V5a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 5v2.5"/><path d="M3.5 12.5h17"/>',
+    cer:'<circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"/><path d="M10 9l1.5 1.5L14.5 7.5"/>'
+  };
+  function svg(k){ return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
+
+  // ---------- menú lateral ----------
+  function items(){
+    var L = [{id:'ficha', t:'Ficha técnica', g:'Presentación', dot:'i'}];
+    SES.forEach(function(s){ L.push({id:'s'+s.n, t:'Sesión ' + s.n + ' · ' + s.t, small: cap(s.corta), g:'Sesiones', dot:String(s.n), ses:s}); });
+    L.push({id:'examen', t:'Examen final', small:'20 preguntas', g:'Evaluación y cierre', dot:'✎'});
+    L.push({id:'encuesta', t:'Encuesta de opinión', g:'Evaluación y cierre', dot:'★'});
+    L.push({id:'certificado', t:'Tu certificado', small:'Con código QR', g:'Evaluación y cierre', dot:'✓'});
+    return L;
+  }
+  function renderRoute(){
+    var nav = $('route'); nav.replaceChildren(); var g = '';
+    items().forEach(function(it){
+      if (it.g !== g){ g = it.g; nav.appendChild(el('div', 'grp', g)); }
+      var a = el('a'); a.href = '#' + it.id;
+      var done = it.id === 'ficha' ? isDone('ficha') : isDone(it.id);
+      var locked = !K && (it.id === 'examen' || it.id === 'encuesta');
+      a.className = (view === it.id ? 'on ' : '') + (done ? 'done ' : '') + (locked ? 'lock' : '');
+      var d = el('span', 'dot', done ? '✓' : (locked ? '🔒' : it.dot)); a.appendChild(d);
+      var tx = el('span'); tx.appendChild(document.createTextNode(it.t)); if (it.small) tx.appendChild(el('small', null, it.small)); a.appendChild(tx);
+      a.addEventListener('click', function(){ $('route').classList.remove('show'); $('mt').setAttribute('aria-expanded','false'); });
+      nav.appendChild(a);
+    });
+    var n = SES.filter(function(s){ return isDone('s' + s.n); }).length;
+    $('pbar').style.width = K ? Math.round(n / SES.length * 100) + '%' : '0%';
+    $('ptxt').textContent = K ? 'Avance: ' + n + ' de ' + SES.length + ' sesiones (' + Math.round(n / SES.length * 100) + ' %)' : 'Modo muestra · ingresa tu clave para ver todo';
+  }
+  $('mt').onclick = function(){ var r = $('route'); r.classList.toggle('show'); this.setAttribute('aria-expanded', r.classList.contains('show')); };
+
+  // ---------- acceso ----------
+  function accOpen(){
+    var a = $('acc'); a.replaceChildren();
+    var d = el('div', 'open'); var s = el('span'); s.innerHTML = '<b>Aula abierta.</b> Acceso completo.'; d.appendChild(s);
+    var out = el('button', 'btn btn-line btn-sm', 'Salir'); out.type = 'button'; out.onclick = function(){ ls('lidara-aula-clave', null); location.reload(); };
+    d.appendChild(out); a.appendChild(d);
+  }
+  async function unlock(clave, quiet){
+    var m = $('m');
+    try {
+      var L = await (await fetch('aula/llave.json?t=' + Date.now(), {cache:'no-store'})).json();
+      var base = await crypto.subtle.importKey('raw', enc.encode(clave), 'PBKDF2', false, ['deriveKey']);
+      var kek = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(L.salt), iterations:L.iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+      var raw = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(L.iv), additionalData:enc.encode('lidara-aula')}, kek, b64(L.k));
+      K = await crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']);
+      if ($('rec').checked) ls('lidara-aula-clave', clave);
+      try { var E = await (await fetch('aula/enlaces.json?t=' + Date.now(), {cache:'no-store'})).json(); LINKS.examen = E.examen || ''; LINKS.encuesta = E.encuesta || ''; } catch(e) {}
+      accOpen(); route(); return true;
+    } catch(e) {
+      if (!quiet){ m.hidden = false; m.className = 'msg bad'; m.textContent = 'Clave incorrecta. Revísala o escríbenos al 917 580 401.'; }
+      ls('lidara-aula-clave', null); return false;
+    }
+  }
+  $('f').addEventListener('submit', async function(e){
+    e.preventDefault(); var c = $('clave').value.trim(); if (!c) return;
+    var m = $('m'); m.hidden = false; m.className = 'msg'; m.textContent = 'Comprobando…';
+    if (await unlock(c)) m.hidden = true;
+  });
+
+  // ---------- vistas ----------
+  function head(main, crumb, title, sub){
+    main.appendChild(el('div', 'crumb', crumb));
+    main.appendChild(el('h1', 't disp', title));
+    if (sub) main.appendChild(el('p', 'sub', sub));
+  }
+  function pager(main, prevId, nextId){
+    var all = items(), p = el('div', 'pager');
+    var i = all.findIndex(function(x){ return x.id === view; });
+    var pr = all[i-1], nx = all[i+1];
+    if (pr){ var a = el('a', 'btn btn-line', '← ' + pr.t.split(' · ')[0]); a.href = '#' + pr.id; p.appendChild(a); } else p.appendChild(el('span'));
+    if (nx){ var b = el('a', 'btn btn-navy', nx.t.split(' · ')[0] + ' →'); b.href = '#' + nx.id; p.appendChild(b); }
+    main.appendChild(p);
+  }
+  function vFicha(main){
+    setDone('ficha');
+    head(main, 'Presentación', 'Ficha técnica', null);
+    var h = el('div', 'ficha-hero');
+    h.innerHTML = '<div><div class="k">Taller teórico–práctico · Virtual en vivo</div><h2 class="disp">CREA, IMPLEMENTA Y GESTIONA <span>TU DROGUERÍA</span></h2><p>De la constitución de la empresa a la gestión diaria de la droguería, con almacén propio o tercerizado. Aprende haciendo: 20 % teoría y 80 % práctica.</p></div>' +
+      '<div class="facts"><div class="fact"><b>90 h</b><span>Horas pedagógicas</span></div><div class="fact"><b>9</b><span>Sesiones en vivo</span></div><div class="fact"><b>20/80</b><span>Teoría / práctica</span></div><div class="fact"><b>QR</b><span>Certificado verificable</span></div></div>';
+    main.appendChild(h);
+    var g = el('div', 'fgrid');
+    var cards = [
+      ['obj', 'Objetivo de aprendizaje', '<p>Al finalizar, el participante podrá constituir, implementar y gestionar una droguería con almacén propio o tercerizado, cumpliendo la normativa sanitaria vigente.</p>'],
+      ['who', 'Dirigido a', '<p>Propietarios e inversionistas, químicos farmacéuticos y directores técnicos, y personal de droguerías y almacenes farmacéuticos.</p>'],
+      ['doc', 'Docente', '<p>Químico farmacéutico colegiado, asesor técnico en la apertura, implementación y gestión de droguerías.</p>'],
+      ['hrs', 'Horas y horario', '<p>90 horas pedagógicas en 9 sesiones por Google Meet: sábados de 5:00 a 8:00 p. m. y domingos de 10:00 a. m. a 1:00 p. m.</p>'],
+      ['met', 'Metodología', '<p>Conversatorio con casos reales, trabajo en salas de grupos, demostraciones en la Ventanilla Virtual de DIGEMID y tareas aplicadas a tu propia droguería.</p>'],
+      ['kit', 'Kit del SGC', '<p>Manuales, POE y formatos personalizados con los datos de tu empresa y de tu director técnico.</p>'],
+      ['cer', 'Certificación', '<p>Certificado de participación con código QR, verificable en lidarape.github.io/verificar. No requiere nota mínima.</p>']
+    ];
+    cards.forEach(function(c){ var d = el('div', 'fc'); d.innerHTML = '<span class="ic">' + svg(c[0]) + '</span><div><h3>' + c[1] + '</h3>' + c[2] + '</div>'; g.appendChild(d); });
+    var ct = el('div', 'fc wide'); var ol = '<ol>' + SES.map(function(s){ return '<li>' + s.t + '</li>'; }).join('') + '</ol>';
+    ct.innerHTML = '<span class="ic">' + svg('con') + '</span><div style="min-width:0"><h3>Contenidos</h3>' + ol + '</div>'; g.appendChild(ct);
+    main.appendChild(g);
+    if (!K){ var c2 = el('div', 'cta'); c2.innerHTML = '<p>Aún no estás inscrito: puedes ver la ficha técnica y una muestra de cada sesión. Inscríbete para acceder al aula completa.</p>'; var a = el('a', 'btn btn-wa', 'Escribe «TALLER» al WhatsApp'); a.href = waTaller; a.target = '_blank'; a.rel = 'noopener'; c2.appendChild(a); main.appendChild(c2); }
+    pager(main);
+  }
+  async function load(n){
+    if (cache[n]) return cache[n];
+    var buf = new Uint8Array(await (await fetch('aula/s' + n + '.bin')).arrayBuffer());
+    var pt = new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM', iv:buf.slice(0,12), additionalData:enc.encode('s'+n)}, K, buf.slice(12)));
+    var dv = new DataView(pt.buffer), cnt = dv.getUint32(0, true), off = 4 + 4*cnt, urls = [];
+    for (var i = 0; i < cnt; i++){ var len = dv.getUint32(4 + 4*i, true); urls.push(URL.createObjectURL(new Blob([pt.slice(off, off+len)], {type:'image/jpeg'}))); off += len; }
+    return (cache[n] = urls);
+  }
+  function vSesion(main, s){
+    cur = s; idx = 0;
+    head(main, 'Sesión ' + s.n + ' de 9', s.t, cap(s.dia) + ' · ' + s.hora + ' · Google Meet');
+    var st = el('div'); st.style.marginBottom = '12px';
+    if (K && isDone('s' + s.n)) st.appendChild(el('span', 'done-pill', '✓ Hecho: sesión vista'));
+    else if (!K) st.appendChild(el('span', 'lock-pill', '🔒 Muestra: ' + NM + ' de ' + s.total + ' diapositivas'));
+    main.appendChild(st);
+    var v = el('div', 'viewer'); v.id = 'viewer';
+    v.innerHTML = '<div class="stage" id="stage"><button class="navb p" id="vp" type="button" aria-label="Anterior">‹</button><div id="vc" class="msgv">Cargando diapositivas…</div><button class="navb n" id="vn" type="button" aria-label="Siguiente">›</button></div>' +
+      '<div class="vbar"><span class="cnt" id="vk"></span><span id="vhint">Usa las flechas del teclado o desliza con el dedo.</span><button class="ib" id="fs" type="button">Pantalla completa ⛶</button></div>';
+    main.appendChild(v);
+    $('vp').onclick = function(){ go(-1); }; $('vn').onclick = function(){ go(1); };
+    $('fs').onclick = function(){ if (document.fullscreenElement) document.exitFullscreen(); else if (v.requestFullscreen) v.requestFullscreen(); };
+    var x0 = null; $('stage').addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    $('stage').addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); x0 = null; });
+    $('stage').addEventListener('contextmenu', function(e){ if (e.target.tagName === 'IMG') e.preventDefault(); });
+    if (K){
+      if (s.tareas.length){ var b = el('div', 'box'); b.appendChild(el('h3', null, 'Tareas de esta sesión')); var ul = el('ul'); s.tareas.forEach(function(t){ ul.appendChild(el('li', null, t)); }); b.appendChild(ul); main.appendChild(b); }
+      var r = el('div', 'row'); var mk = el('button', 'btn ' + (isDone('s'+s.n) ? 'btn-line' : 'btn-red'), isDone('s'+s.n) ? '✓ Sesión vista' : 'Marcar sesión como vista ✓'); mk.type = 'button';
+      mk.onclick = function(){ setDone('s' + s.n); mk.className = 'btn btn-line'; mk.textContent = '✓ Sesión vista'; renderRoute(); };
+      r.appendChild(mk); main.appendChild(r);
+      slides = []; show();
+      load(s.n).then(function(u){ if (cur === s){ slides = u; show(); } }).catch(function(){ $('vc').textContent = 'No se pudieron cargar las diapositivas. Revisa tu conexión e inténtalo de nuevo.'; });
+    } else {
+      slides = []; for (var i = 1; i <= NM; i++) slides.push('muestra/s' + s.n + '-' + i + '.jpg'); slides.push('__fin__'); show();
+      var c2 = el('div', 'cta'); c2.innerHTML = '<p>Esta es una muestra. La sesión completa tiene ' + s.total + ' diapositivas, casos prácticos y tareas.</p>'; var a = el('a', 'btn btn-wa', 'Quiero inscribirme'); a.href = waTaller; a.target = '_blank'; a.rel = 'noopener'; c2.appendChild(a); main.appendChild(c2);
+    }
+    pager(main);
+  }
+  function show(){
+    var vc = $('vc'); if (!vc) return; vc.replaceChildren(); vc.className = '';
+    if (!slides.length){ vc.className = 'msgv'; vc.textContent = 'Cargando diapositivas…'; $('vk').textContent = ''; $('vp').disabled = $('vn').disabled = true; return; }
+    var src = slides[idx];
+    if (src === '__fin__'){
+      var e = el('div', 'endcard'); e.innerHTML = '<h3>Fin de la muestra</h3><p>Inscríbete en el taller para ver la sesión completa, con sus casos prácticos y tareas.</p>';
+      var a = el('a', 'btn btn-wa', 'Escribe «TALLER» al WhatsApp'); a.target = '_blank'; a.rel = 'noopener'; a.href = WA + encodeURIComponent('Hola LIDARA, TALLER. Vi la muestra de la sesión ' + cur.n + ' y quiero inscribirme.');
+      e.appendChild(a); vc.appendChild(e); $('vk').textContent = 'Fin de la muestra';
+    } else {
+      var im = el('img'); im.src = src; im.alt = 'Diapositiva ' + (idx+1); im.draggable = false; vc.appendChild(im);
+      $('vk').textContent = (idx+1) + ' / ' + (K ? slides.length : NM + ' (muestra)');
+      if (idx + 1 < slides.length && slides[idx+1] !== '__fin__'){ var pre = new Image(); pre.src = slides[idx+1]; }
+    }
+    $('vp').disabled = idx === 0; $('vn').disabled = idx >= slides.length - 1;
+  }
+  function go(d){ var j = idx + d; if (j < 0 || j >= slides.length) return; idx = j; show(); }
+  function vForm(main, kind){
+    var ex = kind === 'examen';
+    head(main, 'Evaluación y cierre', ex ? 'Examen final' : 'Encuesta de opinión', ex ? '20 preguntas de opción múltiple sobre las 9 sesiones' : 'Tu opinión nos ayuda a mejorar el taller');
+    var b = el('div', 'box');
+    if (!K){ b.innerHTML = '<h3>🔒 Solo para participantes inscritos</h3><p style="margin:0;color:var(--muted)">Ingresa la clave del aula en el panel de la izquierda.</p>'; main.appendChild(b); pager(main); return; }
+    if (ex) b.innerHTML = '<h3>Antes de empezar</h3><ul><li>Son 20 preguntas; cada respuesta correcta vale 1 punto.</li><li>Al enviar verás tu nota y la explicación de cada pregunta, con su base normativa.</li><li>El examen es formativo: el certificado de participación no requiere nota mínima.</li><li>Tiempo sugerido: 30 minutos.</li></ul>';
+    else b.innerHTML = '<h3>Encuesta de opinión</h3><ul><li>Toma menos de 3 minutos.</li><li>Al completarla te enviaremos tu certificado de participación con código QR.</li></ul>';
+    var r = el('div', 'row'); var url = LINKS[kind];
+    if (url){ var a = el('a', 'btn btn-red', ex ? 'Rendir el examen final' : 'Responder la encuesta'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.onclick = function(){ setDone(kind); renderRoute(); }; r.appendChild(a); }
+    else r.appendChild(el('span', 'lock-pill', 'El enlace se habilitará al final del taller'));
+    if (isDone(kind)) r.appendChild(el('span', 'done-pill', '✓ Hecho'));
+    b.appendChild(r); main.appendChild(b); pager(main);
+  }
+  function vCert(main){
+    head(main, 'Evaluación y cierre', 'Tu certificado', 'Certificado de participación con código QR');
+    var b = el('div', 'box');
+    b.innerHTML = '<h3>¿Cómo lo recibes?</h3><ul><li>Al terminar el taller y completar la encuesta, LIDARA emite tu certificado de participación con código QR.</li><li>Te lo enviamos por WhatsApp o correo electrónico.</li><li>Cualquier persona puede comprobar que es auténtico escaneando el QR o escribiendo el código en la página de verificación.</li></ul>';
+    var r = el('div', 'row'); var a = el('a', 'btn btn-navy', 'Ir a verificar un certificado'); a.href = '../verificar/'; r.appendChild(a);
+    var w = el('a', 'btn btn-wa', 'Consultar por WhatsApp'); w.href = WA + encodeURIComponent('Hola LIDARA, tengo una consulta sobre mi certificado del taller.'); w.target = '_blank'; w.rel = 'noopener'; r.appendChild(w);
+    b.appendChild(r); main.appendChild(b); pager(main);
+  }
+  function route(){
+    var h = (location.hash || '#ficha').slice(1); var ok = items().some(function(x){ return x.id === h; }); view = ok ? h : 'ficha';
+    if (document.fullscreenElement) document.exitFullscreen();
+    var main = $('main'); main.replaceChildren(); cur = null;
+    if (view === 'ficha') vFicha(main);
+    else if (view[0] === 's' && /^s\d$/.test(view)) vSesion(main, SES[Number(view.slice(1)) - 1]);
+    else if (view === 'examen' || view === 'encuesta') vForm(main, view);
+    else vCert(main);
+    renderRoute(); window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  document.addEventListener('keydown', function(e){ if (!cur || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return; if (e.key === 'ArrowRight' || e.key === 'PageDown'){ e.preventDefault(); go(1); } else if (e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(-1); } });
+  route();
+  var saved = ls('lidara-aula-clave'); if (saved) unlock(saved, true);
+})();
+</script>
+</body>
+</html>

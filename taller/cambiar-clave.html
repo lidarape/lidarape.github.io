@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cambiar clave del aula · LIDARA</title>
+<link rel="icon" href="../logo.png">
+<style>
+:root{--navy:#1E3A78;--red:#E0232E;--ink:#1D2B4A;--muted:#55627A;--line:#DCE3F0;--bg:#F4F6FA;--ok:#1E7A4C;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:32px 16px}
+.box{max-width:520px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+h1{margin:0 0 6px;font-size:24px;color:var(--navy)}
+p{color:var(--muted);margin:0 0 16px}
+label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14px;margin-bottom:12px}
+input{font:inherit;font-size:17px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px}
+button{font:inherit;font-weight:700;font-size:16px;background:var(--navy);color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer;width:100%}
+.msg{margin:14px 0 0;font-weight:700}
+.bad{color:var(--red)}.ok{color:var(--ok)}
+ol{margin:10px 0 0;padding-left:20px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Cambiar la clave del aula</h1>
+  <p>Escribe la clave actual y la nueva. Se descargará un archivo <b>llave.json</b> nuevo. Las diapositivas no cambian: solo cambia la clave para entrar.</p>
+  <form id="f" autocomplete="off">
+    <label>Clave actual<input id="a" type="password" autocomplete="off"></label>
+    <label>Clave nueva (mínimo 6 caracteres)<input id="b" type="password" autocomplete="new-password"></label>
+    <label>Repite la clave nueva<input id="c" type="password" autocomplete="new-password"></label>
+    <button type="submit">Generar llave.json con la clave nueva</button>
+  </form>
+  <div class="msg" id="m" hidden></div>
+</div>
+<script>
+(function(){
+  var enc = new TextEncoder(), m = document.getElementById('m');
+  function b64(t){var s=atob(t),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+  function tob64(u){u=new Uint8Array(u);var s='';for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s);}
+  async function kek(clave, salt, iter, use){
+    var base = await crypto.subtle.importKey('raw', enc.encode(clave), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({name:'PBKDF2', salt:salt, iterations:iter, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, [use]);
+  }
+  function say(t, c){ m.hidden = false; m.className = 'msg ' + (c || ''); m.innerHTML = t; }
+  document.getElementById('f').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var a = document.getElementById('a').value, b = document.getElementById('b').value, c = document.getElementById('c').value;
+    if (b.length < 6) return say('La clave nueva debe tener al menos 6 caracteres.', 'bad');
+    if (b !== c) return say('Las claves nuevas no coinciden.', 'bad');
+    say('Procesando…');
+    try {
+      var L = await (await fetch('aula/llave.json?t=' + Date.now(), {cache:'no-store'})).json();
+      var k1 = await kek(a, b64(L.salt), L.iter, 'decrypt');
+      var K = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(L.iv), additionalData:enc.encode('lidara-aula')}, k1, b64(L.k));
+    } catch(err) { return say('La clave actual no es correcta.', 'bad'); }
+    var salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+    var k2 = await kek(b, salt, L.iter, 'encrypt');
+    var ct = await crypto.subtle.encrypt({name:'AES-GCM', iv:iv, additionalData:enc.encode('lidara-aula')}, k2, K);
+    var out = JSON.stringify({v:(L.v||1)+1, iter:L.iter, salt:tob64(salt), iv:tob64(iv), k:tob64(ct)});
+    var a2 = document.createElement('a'); a2.href = URL.createObjectURL(new Blob([out], {type:'application/json'})); a2.download = 'llave.json'; document.body.appendChild(a2); a2.click(); a2.remove();
+    say('Listo. Se descargó <b>llave.json</b>. Ahora:<ol><li>En GitHub, entra a la carpeta <b>taller</b> y luego a <b>aula</b>.</li><li>Sube el archivo <b>llave.json</b> (reemplaza al anterior) y confirma los cambios.</li><li>Espera unos minutos: desde ese momento solo funcionará la clave nueva.</li></ol>', 'ok');
+  });
+})();
+</script>
+</body>
+</html>
