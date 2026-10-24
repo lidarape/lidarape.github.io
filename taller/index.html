@@ -247,16 +247,16 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
     setDone('ficha');
     head(main, 'Presentación', 'Ficha técnica', null);
     var h = el('div', 'ficha-hero');
-    h.innerHTML = '<div><div class="k">Taller teórico–práctico · Virtual en vivo</div><h2 class="disp">CREA, IMPLEMENTA Y GESTIONA <span>TU DROGUERÍA</span></h2><p>De la constitución de la empresa a la gestión diaria de la droguería, con almacén propio o tercerizado. Aprende haciendo: 20 % teoría y 80 % práctica.</p></div>' +
-      '<div class="facts"><div class="fact"><b>90 h</b><span>Horas pedagógicas</span></div><div class="fact"><b>9</b><span>Sesiones en vivo</span></div><div class="fact"><b>20/80</b><span>Teoría / práctica</span></div><div class="fact"><b>QR</b><span>Certificado verificable</span></div></div>';
+    h.innerHTML = '<div><div class="k">Taller teórico–práctico · Aula virtual a tu ritmo</div><h2 class="disp">CREA, IMPLEMENTA Y GESTIONA <span>TU DROGUERÍA</span></h2><p>De la constitución de la empresa a la gestión diaria de la droguería, con almacén propio o tercerizado. Aprende haciendo: 20 % teoría y 80 % práctica.</p></div>' +
+      '<div class="facts"><div class="fact"><b>90 h</b><span>Horas pedagógicas</span></div><div class="fact"><b>9</b><span>Sesiones</span></div><div class="fact"><b>20/80</b><span>Teoría / práctica</span></div><div class="fact"><b>QR</b><span>Certificado verificable</span></div></div>';
     main.appendChild(h);
     var g = el('div', 'fgrid');
     var cards = [
       ['obj', 'Objetivo de aprendizaje', '<p>Al finalizar, el participante podrá constituir, implementar y gestionar una droguería con almacén propio o tercerizado, cumpliendo la normativa sanitaria vigente.</p>'],
       ['who', 'Dirigido a', '<p>Propietarios e inversionistas, químicos farmacéuticos y directores técnicos, y personal de droguerías y almacenes farmacéuticos.</p>'],
       ['doc', 'Docente', '<p>Químico farmacéutico colegiado, asesor técnico en la apertura, implementación y gestión de droguerías.</p>'],
-      ['hrs', 'Horas y horario', '<p>90 horas pedagógicas en 9 sesiones por Google Meet: sábados de 5:00 a 8:00 p. m. y domingos de 10:00 a. m. a 1:00 p. m.</p>'],
-      ['met', 'Metodología', '<p>Conversatorio con casos reales, trabajo en salas de grupos, demostraciones en la Ventanilla Virtual de DIGEMID y tareas aplicadas a tu propia droguería.</p>'],
+      ['hrs', 'Horas y modalidad', '<p>90 horas pedagógicas en 9 sesiones. Avanza a tu ritmo: el aula está disponible las 24 horas y puedes repasar cada sesión cuantas veces quieras.</p>'],
+      ['met', 'Metodología', '<p>20 % teoría y 80 % práctica: diapositivas con base normativa, casos reales, tareas aplicadas a tu propia droguería y examen final con retroalimentación.</p>'],
       ['kit', 'Kit del SGC', '<p>Manuales, POE y formatos personalizados con los datos de tu empresa y de tu director técnico.</p>'],
       ['cer', 'Certificación', '<p>Certificado de participación con código QR, verificable en lidarape.github.io/verificar. No requiere nota mínima.</p>']
     ];
@@ -277,7 +277,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
   }
   function vSesion(main, s){
     cur = s; idx = 0;
-    head(main, 'Sesión ' + s.n + ' de 9', s.t, 'Sesión en vivo por Google Meet · ' + s.total + ' diapositivas');
+    head(main, 'Sesión ' + s.n + ' de 9', s.t, s.total + ' diapositivas · avanza a tu ritmo');
     var st = el('div'); st.style.marginBottom = '12px';
     if (K && isDone('s' + s.n)) st.appendChild(el('span', 'done-pill', '✓ Hecho: sesión vista'));
     else if (!K) st.appendChild(el('span', 'lock-pill', '🔒 Muestra: ' + NM + ' de ' + s.total + ' diapositivas'));
