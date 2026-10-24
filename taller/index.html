@@ -193,6 +193,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
       a.addEventListener('click', function(){ $('route').classList.remove('show'); $('mt').setAttribute('aria-expanded','false'); });
       nav.appendChild(a);
     });
+    var dg = el('div', 'grp', 'Docente'); nav.appendChild(dg); var dl = el('a'); dl.href = 'docente.html'; dl.appendChild(el('span', 'dot', '🔑')); dl.appendChild(el('span', null, 'Panel del docente')); nav.appendChild(dl);
     var n = SES.filter(function(s){ return isDone('s' + s.n); }).length;
     $('pbar').style.width = K ? Math.round(n / SES.length * 100) + '%' : '0%';
     $('ptxt').textContent = K ? 'Avance: ' + n + ' de ' + SES.length + ' sesiones (' + Math.round(n / SES.length * 100) + ' %)' : 'Modo muestra · ingresa tu clave para ver todo';
