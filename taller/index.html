@@ -78,11 +78,12 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
 .fc.wide{grid-column:1/-1}
 .fc.wide ol{columns:2;column-gap:28px}
 /* visor */
-.viewer{background:#0B1430;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:10px}
-.viewer:fullscreen{border-radius:0;justify-content:center}
-.stage{position:relative;aspect-ratio:16/9;max-height:calc(100vh - 260px);min-height:180px;width:100%;display:flex;align-items:center;justify-content:center;touch-action:pan-y;margin:0 auto}
-.viewer:fullscreen .stage{max-height:calc(100vh - 70px)}
-.stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none;display:block}
+.viewer{background:#0B1430;border-radius:16px;padding:12px;max-width:max(320px,calc((100vh - 340px) * 1.7778 + 24px));margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.viewer:fullscreen{border-radius:0;justify-content:center;max-width:none}
+.stage{position:relative;aspect-ratio:16/9;min-height:180px;width:100%;display:flex;align-items:center;justify-content:center;touch-action:pan-y;margin:0 auto}
+.viewer:fullscreen .stage{width:min(100%,calc((100vh - 70px) * 1.7778));margin:0 auto}
+.stage #vc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0}
+.stage img{max-width:100%;max-height:100%;width:auto;height:auto;margin:auto;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none;display:block}
 .stage .msgv{color:#fff;font-weight:700;text-align:center;padding:20px}
 .navb{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:24px;cursor:pointer;z-index:2}
 .navb.p{left:6px}.navb.n{right:6px}
@@ -112,7 +113,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
   .fgrid{grid-template-columns:1fr}.fc.wide ol{columns:1}
   main{padding:18px 16px 44px}
   .ficha-hero{padding:22px}
-  .stage{max-height:none}
+  .viewer{max-width:none}
   .viewer{padding:8px;border-radius:12px}
   .navb{width:36px;height:36px;font-size:20px}
   #vhint{display:none}
@@ -145,7 +146,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
 
 <script>
 (function(){
-  var SES = [{"n": 1, "t": "Constitución de la empresa", "dia": "domingo 15 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 15/11", "total": 15, "tareas": []}, {"n": 2, "t": "Dirección técnica", "dia": "sábado 21 de noviembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 21/11", "total": 13, "tareas": ["Para la Sesión 3 (mañana domingo): trae tu croquis o un croquis de referencia.", "Para la Sesión 4 (sábado 28): completa la matriz de funciones del DT de tu droguería.", "Para la Sesión 4: lista los documentos «siempre listos» que tendrías hoy."]}, {"n": 3, "t": "Creación de droguerías", "dia": "domingo 22 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 22/11", "total": 13, "tareas": ["Calcula el volumen útil de tu almacén o de un almacén de referencia.", "Lista las cláusulas mínimas para tu contrato de tercerización.", "Crea tu usuario en la Ventanilla Virtual de DIGEMID para la Sesión 4 (sábado 28)."]}, {"n": 4, "t": "Ventanilla Virtual de DIGEMID I: solicitud", "dia": "sábado 28 de noviembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 28/11", "total": 13, "tareas": ["Para la Sesión 5 (mañana domingo): revisa el estado de un expediente real o de prueba.", "Para la Sesión 6 (sábado 5 de diciembre): arma tu expediente con nombres de archivo ordenados.", "Para la Sesión 6: redacta un modelo de escrito de subsanación."]}, {"n": 5, "t": "Ventanilla Virtual de DIGEMID II", "dia": "domingo 29 de noviembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 29/11", "total": 13, "tareas": ["Completa tu matriz de trámites frecuentes.", "Redacta una consulta técnica real de tu droguería.", "Haz una lista de los equipos de tu almacén para la Sesión 6 (sábado 5 de diciembre)."]}, {"n": 6, "t": "Puesta en marcha del almacén, del equipo y del sistema documental", "dia": "sábado 5 de diciembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 5/12", "total": 13, "tareas": ["Para la Sesión 7 (mañana domingo): trae una guía de remisión real o de ejemplo.", "Para la Sesión 8 (sábado 12 de diciembre): completa tu Lista Maestra.", "Para la Sesión 8: revisa la vigencia de los certificados de calibración de tus equipos."]}, {"n": 7, "t": "Gestión diaria de recepción, liberación y despacho", "dia": "domingo 6 de diciembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 6/12", "total": 13, "tareas": ["Calcula el plan de muestreo para tres lotes reales de tu droguería.", "Revisa tu formato de recepción con los criterios vistos.", "Trae un reclamo o devolución real (anonimizado) para la Sesión 8 (sábado 12 de diciembre)."]}, {"n": 8, "t": "Gestión diaria de distribución, atención al cliente y retiro del mercado", "dia": "sábado 12 de diciembre", "hora": "5:00 p. m. a 8:00 p. m.", "corta": "sáb. 12/12", "total": 13, "tareas": ["Para la Sesión 9 (mañana domingo): trae una observación de inspección real o de ejemplo.", "Después del taller: elabora el flujograma de retiro de tu droguería con responsables.", "Después del taller: haz un simulacro y obtén la lista de clientes de un lote real; envíalo por WhatsApp para recibir retroalimentación."]}, {"n": 9, "t": "Autoinspección, CAPA y descargos", "dia": "domingo 13 de diciembre", "hora": "10:00 a. m. a 1:00 p. m.", "corta": "dom. 13/12", "total": 13, "tareas": ["Programa tu primera autoinspección del año.", "Aplica el formato de plan CAPA a un hallazgo real.", "Envía tu caso integrador para recibir la retroalimentación del facilitador."]}];
+  var SES = [{"n": 1, "t": "Constitución de la empresa", "total": 15, "tareas": []}, {"n": 2, "t": "Dirección técnica", "total": 13, "tareas": ["Para la Sesión 3: trae tu croquis o un croquis de referencia.", "Para la Sesión 4: completa la matriz de funciones del DT de tu droguería.", "Para la Sesión 4: lista los documentos «siempre listos» que tendrías hoy."]}, {"n": 3, "t": "Creación de droguerías", "total": 13, "tareas": ["Calcula el volumen útil de tu almacén o de un almacén de referencia.", "Lista las cláusulas mínimas para tu contrato de tercerización.", "Crea tu usuario en la Ventanilla Virtual de DIGEMID para la Sesión 4."]}, {"n": 4, "t": "Ventanilla Virtual de DIGEMID I: solicitud", "total": 13, "tareas": ["Para la Sesión 5: revisa el estado de un expediente real o de prueba.", "Para la Sesión 6: arma tu expediente con nombres de archivo ordenados.", "Para la Sesión 6: redacta un modelo de escrito de subsanación."]}, {"n": 5, "t": "Ventanilla Virtual de DIGEMID II", "total": 13, "tareas": ["Completa tu matriz de trámites frecuentes.", "Redacta una consulta técnica real de tu droguería.", "Haz una lista de los equipos de tu almacén para la Sesión 6."]}, {"n": 6, "t": "Puesta en marcha del almacén, del equipo y del sistema documental", "total": 13, "tareas": ["Para la Sesión 7: trae una guía de remisión real o de ejemplo.", "Para la Sesión 8: completa tu Lista Maestra.", "Para la Sesión 8: revisa la vigencia de los certificados de calibración de tus equipos."]}, {"n": 7, "t": "Gestión diaria de recepción, liberación y despacho", "total": 13, "tareas": ["Calcula el plan de muestreo para tres lotes reales de tu droguería.", "Revisa tu formato de recepción con los criterios vistos.", "Trae un reclamo o devolución real (anonimizado) para la Sesión 8."]}, {"n": 8, "t": "Gestión diaria de distribución, atención al cliente y retiro del mercado", "total": 13, "tareas": ["Para la Sesión 9: trae una observación de inspección real o de ejemplo.", "Después del taller: elabora el flujograma de retiro de tu droguería con responsables.", "Después del taller: haz un simulacro y obtén la lista de clientes de un lote real; envíalo por WhatsApp para recibir retroalimentación."]}, {"n": 9, "t": "Autoinspección, CAPA y descargos", "total": 13, "tareas": ["Programa tu primera autoinspección del año.", "Aplica el formato de plan CAPA a un hallazgo real.", "Envía tu caso integrador para recibir la retroalimentación del facilitador."]}];
   var NM = 3;
   var WA = 'https://wa.me/51917580401?text=';
   var enc = new TextEncoder();
@@ -173,7 +174,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
   // ---------- menú lateral ----------
   function items(){
     var L = [{id:'ficha', t:'Ficha técnica', g:'Presentación', dot:'i'}];
-    SES.forEach(function(s){ L.push({id:'s'+s.n, t:'Sesión ' + s.n + ' · ' + s.t, small: cap(s.corta), g:'Sesiones', dot:String(s.n), ses:s}); });
+    SES.forEach(function(s){ L.push({id:'s'+s.n, t:'Sesión ' + s.n + ' · ' + s.t, g:'Sesiones', dot:String(s.n), ses:s}); });
     L.push({id:'examen', t:'Examen final', small:'20 preguntas', g:'Evaluación y cierre', dot:'✎'});
     L.push({id:'encuesta', t:'Encuesta de opinión', g:'Evaluación y cierre', dot:'★'});
     L.push({id:'certificado', t:'Tu certificado', small:'Con código QR', g:'Evaluación y cierre', dot:'✓'});
@@ -275,7 +276,7 @@ h1.t{margin:6px 0 6px;font-size:clamp(28px,3.4vw,40px);color:var(--navy)}
   }
   function vSesion(main, s){
     cur = s; idx = 0;
-    head(main, 'Sesión ' + s.n + ' de 9', s.t, cap(s.dia) + ' · ' + s.hora + ' · Google Meet');
+    head(main, 'Sesión ' + s.n + ' de 9', s.t, 'Sesión en vivo por Google Meet · ' + s.total + ' diapositivas');
     var st = el('div'); st.style.marginBottom = '12px';
     if (K && isDone('s' + s.n)) st.appendChild(el('span', 'done-pill', '✓ Hecho: sesión vista'));
     else if (!K) st.appendChild(el('span', 'lock-pill', '🔒 Muestra: ' + NM + ' de ' + s.total + ' diapositivas'));
